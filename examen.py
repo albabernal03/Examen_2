@@ -32,8 +32,11 @@ def separacion_datos_url(datos_navegacion):
              campaña.append(y[0]) #Se añade a la lista de campaña tan solo lo que esta después de 'camp='
         except:
             campaña.append(0)
-        
-navegacion(4) (1)['id_campaña']=campaña
+    datos_navegacion['id_campaña']=campaña #Añadimos una nueva columna al csv con los datos de campaña
+    print(datos_navegacion) #mostramos casv con la nueva columna
+    datos_navegacion.to_csv('navegacion_final', index= False) #guardamos el csv
+#printeamos la funcion
+separacion_datos_url('dataset_navegacion()')
 
 
 
