@@ -63,9 +63,10 @@ def Separacion_datos_url(datos_navegacion):
     datos_navegacion.to_csv('navegacion_final.csv', index= False)
 print (Separacion_datos_url(Dataset_navegacion()))
 
-def navegacion_final(datos_navegacion):
-    datos_navegacion.to_csv('navegacion_final.csv', index= False)
-print (navegacion_final(Dataset_navegacion()))
+def navegacion_final():
+    datos_navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    datos_navegacion_final.to_csv('navegacion_final.csv', index= False)
+print (navegacion_final(Separacion_datos_url(Dataset_navegacion())))
 
 
 
