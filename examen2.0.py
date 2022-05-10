@@ -29,6 +29,7 @@ def Separacion_datos_url(URL):
     site_link=[]
     id_user1=[]
     gclid_1=[]
+    uuid_1=[]
     #Estos datos los vamos a extraer de las urls que se encuentran en la columna de url_landings
     
     for url in URL: #En esta parte se separan los datos de la url
@@ -73,7 +74,15 @@ def Separacion_datos_url(URL):
             gclid_1.append(y[0])
         except:
             gclid_1.append(0)
-    Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1}
+    for url in URL:
+        try:
+            x= str(url).split('uuid=')
+            y= (x[1]).split('&')
+            uuid_1.append(y[0])
+        except:
+            uuid_1.append(0)
+
+    Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts']} #Se crea un diccionario con los datos de la url
     navegacion_final=pd.DataFrame(Datos)
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
