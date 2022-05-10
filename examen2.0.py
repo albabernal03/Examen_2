@@ -76,8 +76,8 @@ def Separacion_datos_url(datos_navegacion):
     datos_navegacion['id_adgroup']=adgroup
     datos_navegacion['id_advertisement']=advertisement
     datos_navegacion['id_site_link']=site_link
-    datos_navegacion['id_user']=id_user1
-    datos_navegacion['gclid']=gclid_1
+    datos_navegacion['id_user_1']=id_user1
+    datos_navegacion['gclid_1']=gclid_1
     print(datos_navegacion)
 print (Separacion_datos_url(Dataset_navegacion()))
 
