@@ -1,6 +1,8 @@
 from numpy.lib.function_base import append #Esta libreria nos permite elementos a un array
 import pandas as pd #Esta libreria nos permite trabajar con dataframes
 #Una vez exportadas las librerias, definimos las funciones para cada dataset
+
+
 #PASO 1: LEER LOS FICHEROS CSV
 def Dataset_conversiones():
     datos_conversion=pd.read_csv('conversiones (4).csv', sep=';')
@@ -11,13 +13,11 @@ print (Dataset_conversiones())
 
 def Dataset_navegacion():
     datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';') 
-    datos_navegacion.pop['id_user']
-    datos_navegacion.pop['gclid']
     return datos_navegacion
 print (Dataset_navegacion())
 
 #PASO 2: SEPARAR LOS DATOS DE LA URL DE LOS DATOS DE LA CAMPAÑA, ADGROUP, ADVERTISEMENT, SITE_LINK
-#hay fallos en alguna de las url pues el idUser y gclid muchas de oas lineas no coinciden con la de la url proporcionada, luego estos datos también los sacaremos de la url y crearemos columnas nuevas
+#hay fallos en alguna de las url pues el idUser y gclid en muchas de las lineas no coinciden con la de la url proporcionada, luego estos datos también los sacaremos de la url y crearemos columnas nuevas
 
 def Separacion_datos_url(datos_navegacion):
     #En primer lugar creo lista vacias, que luego usaremos para hacer columnas en la tabla
@@ -81,12 +81,13 @@ def Separacion_datos_url(datos_navegacion):
     datos_navegacion['id_user_1']=id_user1
     datos_navegacion['gclid_1']=gclid_1
     print(datos_navegacion)
+    datos_navegacion.to_csv('navegacion_final.csv', index= False)
 print (Separacion_datos_url(Dataset_navegacion()))
 
 def navegacion_final():
     datos_navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
     datos_navegacion_final.to_csv('navegacion_final.csv', index= False)
-print (navegacion_final(Separacion_datos_url('datos_navegacion_final')))
+print(navegacion_final(Separacion_datos_url('datos_navegacion_final')))
 
 
 
