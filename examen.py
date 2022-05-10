@@ -25,7 +25,7 @@ def Separacion_datos_url(datos_navegacion):
     advertisement=[]
     site_link=[]
     #Estos datos los vamos a extraer de las urls que se encuentran en la columna de url_landings
-    urls = datos_navegacion
+    urls = datos_navegacion[]
     for url in urls: #En esta parte se separan los datos de la url
         try:
              x= str(url).split('camp=') #Se separa la url por el caracter 'camp=', para acceder a este string delante hemos puesto lo de str(url)
