@@ -11,6 +11,8 @@ print (Dataset_conversiones())
 
 def Dataset_navegacion():
     datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';') 
+    datos_navegacion.pop['id_user']
+    datos_navegacion.pop['gclid']
     return datos_navegacion
 print (Dataset_navegacion())
 
@@ -83,9 +85,6 @@ print (Separacion_datos_url(Dataset_navegacion()))
 
 def navegacion_final():
     datos_navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
-    datos_navegacion_final.pop(['id_user'])
-    datos_navegacion_final.pop(['gclid'])
-    print(datos_navegacion_final)
     datos_navegacion_final.to_csv('navegacion_final.csv', index= False)
 print (navegacion_final(Separacion_datos_url('datos_navegacion_final')))
 
