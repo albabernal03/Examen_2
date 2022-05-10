@@ -1,7 +1,6 @@
 import pandas as pd
 datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';')
-datos_navegacion= datos_navegacion.dropna()
-print(datos_navegacion)
+
 
 campaña=[]
 adgroup=[]
@@ -24,6 +23,6 @@ for url in urls:
   
 
 
-
+datos_navegacion.dropna(subset=['url_landing'], inplace=True) #Eliminamos las filas que tengan una url_landing vacia
  
     
