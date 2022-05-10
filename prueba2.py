@@ -1,8 +1,8 @@
-import re
-from numpy import shares_memory
+
+
 from numpy.lib.function_base import append
 import pandas as pd
-from pandas import tseries
+
 
 conversiones = pd.read_csv("conversiones (4).csv", sep = ";")
 navegacion = pd.read_csv("navegacion (4) (1).csv", sep = ";")

@@ -1,5 +1,8 @@
 import pandas as pd
 from pandas.core.frame import DataFrame #esta funcion se encarga de realizar la union de los datos
+from numpy import shares_memory
+from numpy.lib.function_base import append
+import re
 
 
 
@@ -60,6 +63,7 @@ def Separacion_datos_url(datos_navegacion):
     datos_navegacion['id_site_link']=site_link
     print(datos_navegacion)
     datos_navegacion.to_csv('navegacion_final.csv', sep=';')
+Separacion_datos_url(Dataset_navegacion())
 
 
 
