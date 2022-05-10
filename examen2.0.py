@@ -15,6 +15,7 @@ def Dataset_navegacion():
 print (Dataset_navegacion())
 
 #PASO 2: SEPARAR LOS DATOS DE LA URL DE LOS DATOS DE LA CAMPAÑA, ADGROUP, ADVERTISEMENT, SITE_LINK
+#hay fallos en alguna de las url pues el idUser y gclid muchas de oas lineas no coinciden con la de la url proporcionada, luego estos datos también los sacaremos de la url y crearemos columnas nuevas
 
 def Separacion_datos_url(datos_navegacion):
     #En primer lugar creo lista vacias, que luego usaremos para hacer columnas en la tabla
@@ -22,6 +23,8 @@ def Separacion_datos_url(datos_navegacion):
     adgroup=[]
     advertisement=[]
     site_link=[]
+    id_user1=[]
+    gclid_1=[]
     #Estos datos los vamos a extraer de las urls que se encuentran en la columna de url_landings
     urls = datos_navegacion['url_landing']
     for url in urls: #En esta parte se separan los datos de la url
@@ -52,20 +55,40 @@ def Separacion_datos_url(datos_navegacion):
             site_link.append(y[0])
         except:
             site_link.append(0)
+    for url in urls:
+        try:
+            x= str(url).split('idUser=')
+            y= (x[1]).split('&')
+            id_user1.append(y[0])
+        except:
+            id_user1.append(0)
+    for url in urls:
+        try:
+            x= str(url).split('gclid=')
+            y= (x[1]).split('&')
+            gclid_1.append(y[0])
+        except:
+            gclid_1.append(0)
+
+
     #Añadimos las columnas a la tabla
     datos_navegacion['id_campaña']=campaña
     datos_navegacion['id_adgroup']=adgroup
     datos_navegacion['id_advertisement']=advertisement
     datos_navegacion['id_site_link']=site_link
+    datos_navegacion['id_user']=id_user1
+    datos_navegacion['gclid']=gclid_1
     print(datos_navegacion)
-    datos_navegacion.to_csv('navegacion_final.csv', index= False)
 print (Separacion_datos_url(Dataset_navegacion()))
 
-def navegacion_csv_final(datos_navegacion):
-    datos_navegacion=pd.read_csv('navegacion_final.csv', sep=';')
-    datos_navegacion.to_csv('navegacion_final.csv', index= False)
-    return datos_navegacion
-print (navegacion_csv_final(Separacion_datos_url('datos_navegacion')))
+def navegacion_final():
+    datos_navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    datos_navegacion_final.to_csv('navegacion_final.csv', index= False)
+print (navegacion_final(Separacion_datos_url('datos_navegacion_final')))
+
+
+#Creamos una funcion que nos elimine las line
+
 
 
 
