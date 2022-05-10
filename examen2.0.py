@@ -82,12 +82,13 @@ def Separacion_datos_url(URL):
         except:
             uuid_1.append(0)
 
+#Con esto vamos a creasr el nuevo csv con los datos separados
     Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts']} #Se crea un diccionario con los datos de la url
     navegacion_final=pd.DataFrame(Datos)
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
+    #borramos las lineas donte aparezca repetidos
+    navegacion_final=navegacion_final.drop_duplicates(subset=['id_user','gclid','uuid'], keep='first')
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
-
-
 
 
 
