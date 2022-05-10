@@ -58,9 +58,14 @@ def Separacion_datos_url(datos_navegacion):
     datos_navegacion['id_advertisement']=advertisement
     datos_navegacion['id_site_link']=site_link
     print(datos_navegacion)
-    #Guardamos el csv
     datos_navegacion.to_csv('navegacion_final.csv', index= False)
 print (Separacion_datos_url(Dataset_navegacion()))
+
+def navegacion_csv_final(datos_navegacion):
+    datos_navegacion=pd.read_csv('navegacion_final.csv', sep=';')
+    datos_navegacion.to_csv('navegacion_final.csv', index= False)
+    return datos_navegacion
+print (navegacion_csv_final(Separacion_datos_url('datos_navegacion')))
 
 
 
