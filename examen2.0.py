@@ -1,6 +1,5 @@
 from numpy.lib.function_base import append #Esta libreria nos permite elementos a un array
 import pandas as pd #Esta libreria nos permite trabajar con dataframes
-import numpy as np
 
 #Una vez exportadas las librerias, definimos las funciones para cada dataset
 #PASO 1: LEER LOS FICHEROS CSV
@@ -13,7 +12,6 @@ print (Dataset_conversiones())
 
 def Dataset_navegacion():
     datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';') 
-    datos_navegacion.to_csv('navegacion_final.csv', index= False)
     return datos_navegacion
 print (Dataset_navegacion())
 
@@ -61,7 +59,17 @@ def Separacion_datos_url(datos_navegacion):
     datos_navegacion['id_advertisement']=advertisement
     datos_navegacion['id_site_link']=site_link
     print(datos_navegacion)
+    #Guardamos el csv
+    datos_navegacion.to_csv('navegacion_final.csv', index= False)
 print (Separacion_datos_url(Dataset_navegacion()))
+
+def navegacion_final(datos_navegacion):
+    datos_navegacion.to_csv('navegacion_final.csv', index= False)
+print (navegacion_final(Dataset_navegacion()))
+
+
+
+    
 
 
 
