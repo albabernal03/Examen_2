@@ -134,7 +134,6 @@ def Unir_datos():
     conversion= pd.DataFrame(conversion_final)
     navegacion= navegacion.assign(Convertido=0)
     conversion = conversion.assign(Convertido=1)
-    mezcla= pd.concat([navegacion, conversion], axis=0)
     mezcla.to_csv('mezcla.csv', sep=';')
 Unir_datos()
 
