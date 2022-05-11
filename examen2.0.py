@@ -120,23 +120,27 @@ Limpiar_conversiones(Dataset_conversiones()['gclid'])
 conversion_final = pd.DataFrame({'id_user':Limpiar_conversiones(Dataset_conversiones()['id_user']), 'gclid':Limpiar_conversiones(Dataset_conversiones()['gclid']), 'date':Dataset_conversiones()['date'], 'hour':Dataset_conversiones()['hour'], 'id_lead':Dataset_conversiones()['id_lead'], 'lead_type': Dataset_conversiones()['lead_type'], 'result':Dataset_conversiones()['result']})
 conversion_final.to_csv('conversion_final.csv', sep=';')
 
-#Ahora unimos los datos de navegacion y conversiones
-def Unir_datos():
-    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
-    conversion_final=pd.read_csv('conversion_final.csv', sep=';')
-    if 'id_suite' in navegacion_final.columns and 'id_suite' in conversion_final.columns:
-        mezcla= pd.merge(navegacion_final, conversion_final, on=['id_suite'], how='outer', suffixes=('_navegacion', '_conversion'))
-    elif 'gclid' in navegacion_final.columns and 'gclid' in conversion_final.columns:
-        mezcla= pd.merge(navegacion_final, conversion_final, on=['gclid'], how='outer', suffixes=('_navegacion', '_conversion'))
-    else:
-        mezcla= pd.merge(navegacion_final, conversion_final, on=['url_landing'], how='outer',  suffixes=('_navegacion', '_conversion'))
-    navegacion= pd.DataFrame(navegacion_final)
-    conversion= pd.DataFrame(conversion_final)
-    navegacion= navegacion.assign(Convertido=0)
-    conversion = conversion.assign(Convertido=1)
-    mezcla= pd.concat([navegacion, conversion], axis=0)
-    mezcla.to_csv('mezcla.csv', sep=';')
-Unir_datos()
+#Ahora unimos los datos de navegacion y conversiones y guardamos el resultado en un nuevo csv
+
+def conversiones(data_1, data_2):
+    conversiones= []
+    for i in data_1:
+        for i in data_2:
+            conversiones.append(1)
+        else:
+            conversiones.append(0)
+    return conversiones
+naveacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+conversion_final=pd.read_csv('conversion_final.csv', sep=';')
+print(conversiones(naveacion_final['id_user'], conversion_final['id_user']))
+print(conversiones(naveacion_final['gclid'], conversion_final['gclid']))
+
+
+
+
+
+
+    
 
 
 
