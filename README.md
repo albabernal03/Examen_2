@@ -233,7 +233,7 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 
 **9.** Creamos una funcion que nos muestre el porcentaje de usuarios recurrentes frente a los totales. En este caso utilizamos tanto la función **.shape()** como **.duplicate()** (cuenta repetidos).
 
-**10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get
+**10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
 
 
 
