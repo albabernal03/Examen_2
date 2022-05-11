@@ -314,11 +314,10 @@ Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de
 
 **Diagrama de sectores:**
 
-En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el numero de visitas de los mismos usuarios frente al total de las visitas. 
+En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el número de visitas de los mismos usuarios frente al total de las visitas. 
 
-<img width="313" alt="image" src="https://user-images.githubusercontent.com/91721875/167966175-6d8d6d25-3fbc-48a3-88a6-da9a0e31a025.png">
+<img width="306" alt="image" src="https://user-images.githubusercontent.com/91721875/167966232-0e0c6da4-8be7-4951-a73d-3eca7e2ad110.png">
 
-En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el numero de visitas de los mismos usuarios frente al total de las visitas. 
 
 ***
 
