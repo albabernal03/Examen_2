@@ -1,5 +1,4 @@
 
-from re import U
 from numpy.lib.function_base import append #Esta libreria nos permite elementos a un array
 import pandas as pd #Esta libreria nos permite trabajar con dataframes
 #Una vez exportadas las librerias, definimos las funciones para cada dataset
@@ -122,7 +121,7 @@ conversion_final = pd.DataFrame({'id_user':Limpiar_conversiones(Dataset_conversi
 conversion_final.to_csv('conversion_final.csv', sep=';')
 
 #Ahora unimos los datos de navegacion y conversiones
-def Unir_datos():
+def Unir_datos(navegacion_final, conversion_final):
     navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
     conversion_final=pd.read_csv('conversion_final.csv', sep=';')
     if 'id_suite' in navegacion_final.columns and 'id_suite' in conversion_final.columns:
@@ -131,15 +130,17 @@ def Unir_datos():
         mezcla= pd.merge(navegacion_final, conversion_final, on=['gclid'], how='outer', suffixes=('_navegacion', '_conversion'))
     else:
         mezcla= pd.merge(navegacion_final, conversion_final, on=['url_landing'], how='outer',  suffixes=('_navegacion', '_conversion'))
- 
-    navegacion= pd.DataFrame(navegacion_final)
-    conversion= pd.DataFrame(conversion_final)
-    navegacion= navegacion.assign(Convertido=0)
-    conversion = conversion.assign(Convertido=1)
-    union= Unir_datos(navegacion,conversion )
-    fin= pd.DataFrame(union)
-    fin.to_csv('union.csv', sep=';')
     return mezcla
+navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+conversion_final=pd.read_csv('conversion_final.csv', sep=';')
+conversion =pd.DataFrame(conversion_final)
+navegacion =pd.DataFrame(navegacion_final)
+conversion= conversion.assign(Convertido=1)
+navegacion= navegacion.assign(Convertido=0)
+union= Unir_datos(navegacion, conversion)
+fin= pd.DataFrame(union)
+fin.to_csv('union.csv', sep=';')
+
 
 
 
