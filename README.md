@@ -226,7 +226,7 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 **6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparacion ponia que si se repetia el id_user en ambos csv creara una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
 
 
-**Los pasos anteriores se pueden resumir como la limpieza de los Dataframes; con ellos una vez limpios respondemos a diversas preguntas**
+==**Los pasos anteriores se pueden resumir como la limpieza de los Dataframes; con ellos una vez limpios respondemos a diversas preguntas**==
 
 **7.** En primer lugar creamos una función que nos muestre el número de visitas. Para ello utilizamos la función **.shape()** (que cuenta filas) en la columna de 'id_user_ del Dataset inicial, ya que las un mismo usuario puede proporcionar más de una visita.
 
