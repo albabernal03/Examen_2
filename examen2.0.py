@@ -116,7 +116,7 @@ def Limpiar_conversiones(dato=[]):
     return dato
 Limpiar_conversiones(Dataset_conversiones()['id_user'])
 Limpiar_conversiones(Dataset_conversiones()['gclid'])
-conversion_final = pd.DataFrame({'id_user':Dataset_conversiones()['id_user'], 'gclid':Dataset_conversiones()['gclid']})
+conversion_final = pd.DataFrame({'id_user':Dataset_conversiones()['id_user'], 'gclid':Dataset_conversiones()['gclid'], 'date':Dataset_conversiones()['date'], 'hour':Dataset_conversiones()['hour'], 'id_lead':Dataset_conversiones()['id_lead'], 'lead_type': Dataset_conversiones()['lead_type'], 'result':Dataset_conversiones()['result']})
 conversion_final.to_csv('conversion_final.csv', sep=';')
 
 
