@@ -196,3 +196,32 @@ def coche_mas_visitado():
 print(f'El coche mas visitado es {coche_mas_visitado()}')
 
 ```
+
+<h2>Explicación paso a paso del código:</h2>
+
+**Pasos:**
+
+**1.** En primer lugar importamos las librerías que necesitamos para desarrollar el programa, en esta ocasión hemos importado las siguientes librerias:
+
+       -Pandas: esta libreria la utilizamos para leer y crear csvs
+       -Numpy:esta libreria la utilizamos para modificar pues arrays puesto que usamos la funcion append
+       
+Asimismo, también importamos funciones como:
+         
+         -re: esta función nos permite comprobar si una determinada columna coincide con su expresion regular. En esta tarea utilizamos el re.search que nos ayuda a bucar patrones.
+         
+**2.** A continuación leemos los ficheros csv proporcionados (navegacion.csv y conversiones.csv); para ello utilizamos las funcion **pd.read_csv** proporcionada por la librería **Pandas**.
+
+**3.** Ahora se nos pide que de una columna del csv de navegacion saquemos diversos datos como son: campaña, adgroup, advertisement y site_link.
+
+Para ello en primer lugar creamos lista vacías con los datos que queremos completar y a continuacion a través **.split()** vamos a ir fragmentado la url para coger el fragmento que nos interesa.
+
+Después de esto creamos un nuevo csv donde añadimos columnas con la nueva información.
+
+**4.** Una vez tenemos nuestro dataset con las nuevas columnas, lo que hacemos es eliminar los datos repetidos, para ello utilizaremos la funciom de Pandas **drop.duplicate()**.
+
+**5.** Ahora con todos los elementos que se repiten en las columnas seleccionadas, lo que hacemos es ordenarlo por hora de visita; para ello al igual que en el paso anterior utilizaremos otra función de Pandas **.sort_values()**.
+
+
+
+
