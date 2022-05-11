@@ -139,6 +139,8 @@ def Unir_datos():
     union= Unir_datos(navegacion,conversion )
     fin= pd.DataFrame(union)
     fin.to_csv('union.csv', sep=';')
+    return mezcla
+
 
 
 
