@@ -131,13 +131,14 @@ def Unir_datos():
         mezcla= pd.merge(navegacion_final, conversion_final, on=['gclid'], how='outer', suffixes=('_navegacion', '_conversion'))
     else:
         mezcla= pd.merge(navegacion_final, conversion_final, on=['url_landing'], how='outer',  suffixes=('_navegacion', '_conversion'))
+ 
     navegacion= pd.DataFrame(navegacion_final)
     conversion= pd.DataFrame(conversion_final)
     navegacion= navegacion.assign(Convertido=0)
     conversion = conversion.assign(Convertido=1)
-    union= Unir_datos(navegacion, conversion)
-    union.to_csv('union.csv', sep=';')
-Unir_datos()
+    union= Unir_datos(navegacion,conversion )
+    fin= pd.DataFrame(union)
+    fin.to_csv('union.csv', sep=';')
 
 
 
