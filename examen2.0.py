@@ -90,7 +90,7 @@ Separacion_datos_url(Dataset_navegacion()['url_landing'])
 
 #PASO 3: ELIMINAMOS LOS USUARIOS DONDE SE REPITE LOS DATOS DEL ID_USER, GCLID, UUID
 
-def Eliminacion_datos_repetidos(navegacion_final):
+def Eliminacion_datos_repetidos():
     navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
     navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
@@ -98,7 +98,7 @@ Eliminacion_datos_repetidos()
 
 #DENTRO DE ESTE EJERCICIO ENCONTRAMOS OTRO APARTADO QUE NOS PIDE ORDENAR POR LA COLUMNA 'TS'
 
-def Ordenacion_por_ts(navegacion_final):
+def Ordenacion_por_ts():
     navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
     navegacion_final=navegacion_final.sort_values(by='ts')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
