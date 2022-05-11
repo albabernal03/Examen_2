@@ -7,7 +7,7 @@ Este es el link del [repositorio](https://github.com/albabernal03/Examen_2)
 ***
 <h2>¿De qué trata esta tarea?</h2>
 
- En esta tarea se mos pide la limpieza y análisis de Dataframes.
+ En esta tarea se nos pide la limpieza y análisis de Dataframes.
 
 ***
 
@@ -195,6 +195,63 @@ def coche_mas_visitado():
                 cars[m.groups()[0]] = 1
     return max(cars, key=cars.get)
 print(f'El coche mas visitado es {coche_mas_visitado()}')
+
+#GRAFICOS
+#5.5: Grafico  sectores de cantidad CALL y FORM
+def grafico_call_form():
+    conversiones=pd.read_csv('conversion_final.csv', sep=';')
+    call=conversiones[conversiones['lead_type']=='CALL'].shape[0]
+    form=conversiones[conversiones['lead_type']=='FORM'].shape[0]
+    labels = 'CALL', 'FORM'
+    sizes = [call, form]
+    colors = ['blue', 'red']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('CALL y FORM', color='white')
+    plt.axis('equal')
+    plt.savefig('img/grafico_call_form.png')
+    plt.show()
+grafico_call_form()
+
+#5.6: Grafico porcentaje de usuarios recurrentes sobre el total de usuarios
+def grafico_recurrentes():
+    datos_navegacion=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
+    total=datos_navegacion['id_user'].shape[0]
+    recurrentes=datos_navegacion[datos_navegacion['id_user'].duplicated()].shape[0]
+    porcentaje=recurrentes/total *100
+    labels = 'Recurrentes', 'No recurrentes'
+    sizes = [porcentaje, 100-porcentaje]
+    colors = ['green', 'orange']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de usuarios recurrentes vs No recurrentes', color='white')
+    plt.axis('equal')
+    plt.savefig('img/recurrentes.png')
+    plt.show()
+grafico_recurrentes()
+
+#grafico de barras de coches mas visitados
+def grafico_coches_mas_visitados():
+    datos_navegacion=pd.read_csv('navegacion_final.csv', sep=';')
+    cars = {}
+    for i in range(datos_navegacion.shape[0]):
+        m = re.search("http(?:s?):\/(?:\/?)www\.metropolis\.com\/es\/(.+?)\/.*", str(datos_navegacion._get_value(i, "url_landing")))
+        if m != None:
+            if m.groups()[0] in cars:
+                cars[m.groups()[0]] += 1
+            else:
+                cars[m.groups()[0]] = 1
+    labels = list(cars.keys())
+    sizes = list(cars.values())
+    plt.bar(labels, sizes)
+    plt.xticks(rotation=90, fontsize=8)
+    plt.title('Coches mas visitados', color='black')
+    plt.savefig('img/coches_mas_visitados.png')
+    plt.show()
+grafico_coches_mas_visitados()
+
 
 ```
 
