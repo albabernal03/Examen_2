@@ -237,5 +237,5 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 **10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
 
 
-
+***
 
