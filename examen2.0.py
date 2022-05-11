@@ -109,7 +109,7 @@ Ordenacion_por_ts()
 
 #ahora vamos a limpiar el csv de conversiones 
 def Limpiar_conversiones(dato=[]):
-    for i in range(len(dato)):
+    for i in range(len(dato)): #en este bucle vamos a sustituir los valores 0 por None por blancos
         if dato[i]=='None':
             dato[i]=''
     return dato
