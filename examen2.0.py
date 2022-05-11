@@ -139,5 +139,19 @@ csv_union= union_final.assign(conversiones_por_gclid= conversiones_por_gclid, co
 csv_union.to_csv('union_final.csv', sep=';')
 
 
+#PASO 5: RESPONDEMOS A LAS PREGUNTAS
+#5.1: Cuantos id_user hay en total
+def Id_user_total():
+    datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';')
+    union_final=pd.read_csv('union_final.csv', sep=';')
+    id_user_total=union_final['id_user_navegacion'].nunique()
+    id_user_total2=datos_navegacion['id_user'].nunique()
+    print('El numero total de id_user es: ', id_user_total)
+    print('El numero total de id_user es: ', id_user_total2)
+Id_user_total()
+
+
+
+
 
 
