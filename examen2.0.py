@@ -1,4 +1,5 @@
 import re
+import matplotlib.pyplot as plt
 from numpy.lib.function_base import append #Esta libreria nos permite elementos a un array
 import pandas as pd #Esta libreria nos permite trabajar con dataframes
 #Una vez exportadas las librerias, definimos las funciones para cada dataset
@@ -85,13 +86,13 @@ def Separacion_datos_url(URL):
 #Con esto vamos a creasr el nuevo csv con los datos separados
     Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts'], 'url_landing': Dataset_navegacion()['url_landing']} #Se crea un diccionario con los datos de la url
     navegacion_final=pd.DataFrame(Datos) #Se crea un dataframe con los datos de la url
-    navegacion_final.to_csv('navegacion_final.csv', sep=';')
+    navegacion_final.to_csv('navegacion_con_repeticiones.csv', sep=';')
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
 
 #PASO 3: ELIMINAMOS LOS USUARIOS DONDE SE REPITE LOS DATOS DEL ID_USER, GCLID, UUID
 
 def Eliminacion_datos_repetidos():
-    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    navegacion_final=pd.read_csv('navegacion_con_repeticion.csv', sep=';')
     navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Eliminacion_datos_repetidos()
@@ -171,7 +172,7 @@ def coche_mas_visitado():
     datos_navegacion=pd.read_csv('navegacion_final.csv', sep=';')
     cars = {}
     for i in range(datos_navegacion.shape[0]):
-        m = re.search("http(?:s?):\/(?:\/?)www\.metropolis\.com\/es\/(.+?)\/.*", str(datos_navegacion._get_value(i, "url_landing")))
+        m = re.search("http(?:s?):\/(?:\/?)www\.metropolis\.com\/es\/(.+?)\/.*", str(datos_navegacion._get_value(i, "url_landing"))) #busca en la url_landing el coche que se esta visitando
         if m != None:
             if m.groups()[0] in cars:
                 cars[m.groups()[0]] += 1
@@ -179,6 +180,41 @@ def coche_mas_visitado():
                 cars[m.groups()[0]] = 1
     return max(cars, key=cars.get)
 print(f'El coche mas visitado es {coche_mas_visitado()}')
+
+#GRAFICOS
+#5.5: Grafico  sectores de cantidad CALL y FORM
+def grafico_call_form():
+    conversiones=pd.read_csv('conversion_final.csv', sep=';')
+    call=conversiones[conversiones['lead_type']=='CALL'].shape[0]
+    form=conversiones[conversiones['lead_type']=='FORM'].shape[0]
+    labels = 'CALL', 'FORM'
+    sizes = [call, form]
+    colors = ['gold', 'yellowgreen']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.show()
+grafico_call_form()
+
+#5.6: Grafico porcentaje de usuarios recurrentes sobre el total de usuarios
+def grafico_recurrentes():
+    datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';')
+    total=datos_navegacion['id_user'].shape[0]
+    recurrentes=datos_navegacion[datos_navegacion['id_user'].duplicated()].shape[0]
+    porcentaje=round(recurrentes/total *100)
+    labels = 'Recurrentes', 'No recurrentes'
+    sizes = [porcentaje, 100-porcentaje]
+    colors = ['blue', 'green']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.show()
+grafico_recurrentes()
+
+
+
 
 
 
