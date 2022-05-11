@@ -1,4 +1,5 @@
 
+from re import U
 from numpy.lib.function_base import append #Esta libreria nos permite elementos a un array
 import pandas as pd #Esta libreria nos permite trabajar con dataframes
 #Una vez exportadas las librerias, definimos las funciones para cada dataset
@@ -134,7 +135,8 @@ def Unir_datos():
     conversion= pd.DataFrame(conversion_final)
     navegacion= navegacion.assign(Convertido=0)
     conversion = conversion.assign(Convertido=1)
-    mezcla.to_csv('mezcla.csv', sep=';')
+    union= Unir_datos(navegacion, conversion)
+    union.to_csv('union.csv', sep=';')
 Unir_datos()
 
 
