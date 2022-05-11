@@ -98,8 +98,8 @@ Eliminacion_datos_repetidos()
 
 # A continuacion hacemos una funcion que ordena los datos por fecha de navegacion
 def Ordenacion_por_ts():
-    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
-    navegacion_final=navegacion_final.sort_values(by='ts')
+    navegacion_final=pd.read_csv( 'navegacion_final.csv', sep=';')
+    navegacion_final=navegacion_final.sort_values('ts', ascending=False)
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Ordenacion_por_ts()
 
@@ -119,56 +119,22 @@ conversion_final.to_csv('conversion_final.csv', sep=';')
 
 #4.2 Ahora vamos a unir los datos de navegacion y conversiones
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
+def Conversiones(data_1, data_2):
+    conversion= []
+    for i in data_1:
+        if i in data_2:
+            conversion.append(1)
+        else:
+            conversion.append(0)
+    return conversion
+#Aplicamos la funcion a las columnas 'id_user' y 'gclid'
+navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+conversion_final=pd.read_csv('conversion_final.csv', sep=';')
+conversiones_por_id= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
+conversiones_por_gclid=Conversiones(navegacion_final['gclid'], conversion_final['gclid'])
+#creamos un csv con la union de los datos
+union=pd.merge( navegacion_final, conversion_final, on=['id_user', 'gclid'])
+union_final=pd.DataFrame(union)
+union_final.to_csv('union_final.csv', sep=';')
 
 
