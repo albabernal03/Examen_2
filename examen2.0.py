@@ -92,7 +92,7 @@ Separacion_datos_url(Dataset_navegacion()['url_landing'])
 
 def Eliminacion_datos_repetidos():
     navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
-    navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'url_landing'], keep='first')
+    navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Eliminacion_datos_repetidos()
 
@@ -122,18 +122,10 @@ conversion_final.to_csv('conversion_final.csv', sep=';')
 
 #Ahora unimos los datos de navegacion y conversiones y guardamos el resultado en un nuevo csv
 
-def conversiones(data_1, data_2):
-    conversiones= []
-    for i in data_1:
-        for i in data_2:
-            conversiones.append(1)
-        else:
-            conversiones.append(0)
-    return conversiones
-naveacion_final=pd.read_csv('navegacion_final.csv', sep=';')
-conversion_final=pd.read_csv('conversion_final.csv', sep=';')
-print(conversiones(naveacion_final['id_user'], conversion_final['id_user']))
-print(conversiones(naveacion_final['gclid'], conversion_final['gclid']))
+
+
+
+
 
 
 
