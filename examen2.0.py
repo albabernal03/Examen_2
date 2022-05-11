@@ -133,8 +133,10 @@ conversion_final=pd.read_csv('conversion_final.csv', sep=';')
 conversiones_por_id= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
 conversiones_por_gclid=Conversiones(navegacion_final['gclid'], conversion_final['gclid'])
 #creamos un csv con la union de los datos
-union=pd.merge( navegacion_final, conversion_final, on=['id_user', 'gclid'])
-union_final=pd.DataFrame(union)
+union=pd.merge( navegacion_final, conversion_final)
+union_final=union.assign(conversiones_por_id=conversiones_por_id, conversiones_por_gclid=conversiones_por_gclid)
 union_final.to_csv('union_final.csv', sep=';')
+
+
 
 
