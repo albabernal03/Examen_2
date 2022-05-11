@@ -1,55 +1,19 @@
+#4.1 Antes de unir limpiamos el dataframe de conversiones
+#ahora vamos a limpiar el csv de conversiones 
+def Limpiar_conversiones(dato=[]):
+    for i in range(len(dato)): #en este bucle vamos a sustituir los valores 0 por None por blancos
+        if dato[i]=='None': 
+            dato[i]= ''
+    return dato
+#Aplicamos la funcion a las columnas 'id_user' y 'gclid'
+Limpiar_conversiones(Dataset_conversiones()['id_user'])
+Limpiar_conversiones(Dataset_conversiones()['gclid'])
+conversion_final = pd.DataFrame({'id_user':Limpiar_conversiones(Dataset_conversiones()['id_user']), 'gclid':Limpiar_conversiones(Dataset_conversiones()['gclid']), 'date':Dataset_conversiones()['date'], 'hour':Dataset_conversiones()['hour'], 'id_lead':Dataset_conversiones()['id_lead'], 'lead_type': Dataset_conversiones()['lead_type'], 'result':Dataset_conversiones()['result']})
+conversion_final.to_csv('conversion_final.csv', sep=';')
 
 
-from numpy.lib.function_base import append
-import pandas as pd
-
-
-conversiones = pd.read_csv("conversiones (4).csv", sep = ";")
-navegacion = pd.read_csv("navegacion (4) (1).csv", sep = ";")
-
-
-campaña = []
-adg = []
-adv = []
-sl = []
-urls = navegacion["url_landing"]
-#Valor del id campaña
-for url in urls:
-    try:
-        esp = str(url).split("camp=")
-        bueno = esp[1].split("&")
-        campaña.append(bueno[0])
-    except:
-        campaña.append(0)
-#Valor del id del adgroup
-for url in urls:
-    try:
-        esp = str(url).split("adg=")
-        bueno = esp[1].split("&")
-        adg.append(bueno[0])
-    except:
-        adg.append(0)
-#valor del adv
-for url in urls:
-    try:
-        esp = str(url).split("adv=")
-        bueno = esp[1].split("&")
-        adv.append(bueno[0])
-    except:
-        adv.append(0)
-#valor del sl
-for url in urls:
-    try:
-        esp = str(url).split("sl=")
-        bueno = esp[1].split("&")
-        sl.append(bueno[0])
-    except:
-        sl.append(0)
-navegacion["id_camp"] = campaña
-navegacion["id_adg"] = adg
-navegacion["id_adv"] = adv
-navegacion["id_sl"] = sl
-
-print(navegacion)
-#Esto es para guardar el fichero final, comentar si no se usa
-navegacion.to_csv("navegacion_final.csv", index = False)
+def Ordenacion_por_ts():
+    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    navegacion_final=navegacion_final.sort_values(by='ts')
+    navegacion_final.to_csv('navegacion_final.csv', sep=';')
+Ordenacion_por_ts()
