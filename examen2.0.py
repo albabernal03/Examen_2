@@ -7,7 +7,8 @@ import pandas as pd #Esta libreria nos permite trabajar con dataframes
 #PASO 1: LEER LOS FICHEROS CSV
 def Dataset_conversiones():
     datos_conversion=pd.read_csv('conversiones (4).csv', sep=';')
-    return datos_conversion
+
+
 print (Dataset_conversiones())
 
 #Acabamos de ejecutarlo y vemos que nos da el resultado esperado
@@ -103,6 +104,28 @@ def Ordenacion_por_ts():
     navegacion_final=navegacion_final.sort_values(by='ts')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Ordenacion_por_ts()
+
+
+#PASO 4: UNIR AMBOS DATAFRAMES
+
+#ahora vamos a limpiar el csv de conversiones 
+def Limpiar_conversiones(dato=[]):
+    for i in range(len(dato)):
+        if dato[i]=='None':
+            dato[i]=''
+    return dato
+Limpiar_conversiones(Dataset_conversiones()['id_user'])
+Limpiar_conversiones(Dataset_conversiones()['gclid'])
+conversion_final = pd.DataFrame({'id_user':Dataset_conversiones()['id_user'], 'gclid':Dataset_conversiones()['gclid']})
+conversion_final.to_csv('conversion_final.csv', sep=';')
+
+
+
+
+
+
+
+
 
 
 
