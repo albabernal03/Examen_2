@@ -293,6 +293,18 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 
 **10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
 
-
 ***
+
+       
+ <h2>Explicación diagramas:</h2>
+
+**====¿Para qué sirve cada diagrama?====**
+
+**Diagrama de barras:**
+
+Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de datos para su mejor entendimiento. Aplicado a este ejercicio observamos claramente que coche ha sido más y menos buscado.
+
+**Diagrama de sectores:**
+
+En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el numero de visitas de los mismos usuarios frente al total de las visitas. 
 
