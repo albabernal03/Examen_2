@@ -217,6 +217,27 @@ def grafico_recurrentes():
     plt.show()
 grafico_recurrentes()
 
+#grafico de barras de coches mas visitados
+def grafico_coches_mas_visitados():
+    datos_navegacion=pd.read_csv('navegacion_final.csv', sep=';')
+    cars = {}
+    for i in range(datos_navegacion.shape[0]):
+        m = re.search("http(?:s?):\/(?:\/?)www\.metropolis\.com\/es\/(.+?)\/.*", str(datos_navegacion._get_value(i, "url_landing")))
+        if m != None:
+            if m.groups()[0] in cars:
+                cars[m.groups()[0]] += 1
+            else:
+                cars[m.groups()[0]] = 1
+    labels = list(cars.keys())
+    sizes = list(cars.values())
+    plt.bar(labels, sizes)
+    plt.xticks(rotation=90, fontsize=8)
+    plt.title('Coches mas visitados', color='black')
+    plt.savefig('img/coches_mas_visitados.png')
+    plt.show()
+grafico_coches_mas_visitados()
+
+
 
 
 
