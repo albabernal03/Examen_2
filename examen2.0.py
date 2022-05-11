@@ -92,7 +92,7 @@ Separacion_datos_url(Dataset_navegacion()['url_landing'])
 #PASO 3: ELIMINAMOS LOS USUARIOS DONDE SE REPITE LOS DATOS DEL ID_USER, GCLID, UUID
 
 def Eliminacion_datos_repetidos():
-    navegacion_final=pd.read_csv('navegacion_con_repeticion.csv', sep=';')
+    navegacion_final=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
     navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Eliminacion_datos_repetidos()
@@ -159,10 +159,10 @@ print(f'El número de formularios que recibe es igual a {call_form()[1]}')
 
 #5.3: Porcentaje de usuarios recurrentes sobre el total de usuarios
 def porcentaje_recurrentes():
-    datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';')
+    datos_navegacion=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
     total=datos_navegacion['id_user'].shape[0]
     recurrentes=datos_navegacion[datos_navegacion['id_user'].duplicated()].shape[0]
-    porcentaje=round(recurrentes/total *100)
+    porcentaje=recurrentes/total *100
     return porcentaje
 print(f'El porcentaje de usuarios recurrentes es igual a {porcentaje_recurrentes()}%')
 
@@ -189,27 +189,31 @@ def grafico_call_form():
     form=conversiones[conversiones['lead_type']=='FORM'].shape[0]
     labels = 'CALL', 'FORM'
     sizes = [call, form]
-    colors = ['gold', 'yellowgreen']
+    colors = ['pink', 'lightblue']
     explode = (0.1, 0.1)
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,
             autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('CALL y FORM', color='white')
     plt.axis('equal')
+    plt.savefig('img/grafico_call_form.png')
     plt.show()
 grafico_call_form()
 
 #5.6: Grafico porcentaje de usuarios recurrentes sobre el total de usuarios
 def grafico_recurrentes():
-    datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';')
+    datos_navegacion=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
     total=datos_navegacion['id_user'].shape[0]
     recurrentes=datos_navegacion[datos_navegacion['id_user'].duplicated()].shape[0]
-    porcentaje=round(recurrentes/total *100)
+    porcentaje=recurrentes/total *100
     labels = 'Recurrentes', 'No recurrentes'
     sizes = [porcentaje, 100-porcentaje]
-    colors = ['blue', 'green']
+    colors = ['lightyellow', 'lightgreen']
     explode = (0.1, 0.1)
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,
             autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de usuarios recurrentes vs No recurrentes', color='white')
     plt.axis('equal')
+    plt.savefig('img/recurrentes.png')
     plt.show()
 grafico_recurrentes()
 
