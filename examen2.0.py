@@ -84,10 +84,19 @@ def Separacion_datos_url(URL):
 
 #Con esto vamos a creasr el nuevo csv con los datos separados
     Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts']} #Se crea un diccionario con los datos de la url
-    navegacion_final=pd.DataFrame(Datos)
-    navegacion_final=navegacion_final.drop_duplicates(subset=['id_user','gclid','uuid'], keep='first')
+    navegacion_final=pd.DataFrame(Datos) #Se crea un dataframe con los datos de la url
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
+
+#Ahora vamos a eliminar los datos repetidos, si se repite el id_user, el gclid o el uuid, se elimina toda la linea
+def Eliminacion_datos_repetidos():
+    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
+    navegacion_final.to_csv('navegacion_final.csv', sep=';')
+Eliminacion_datos_repetidos()
+
+
+
 
 
 
