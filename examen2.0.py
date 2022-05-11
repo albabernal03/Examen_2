@@ -133,9 +133,10 @@ conversion_final=pd.read_csv('conversion_final.csv', sep=';')
 conversiones_por_id= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
 conversiones_por_gclid=Conversiones(navegacion_final['gclid'], conversion_final['gclid'])
 #creamos un csv con la union de los datos
-union=pd.merge( navegacion_final, conversion_final)
-union_final=union.assign(conversiones_por_id=conversiones_por_id, conversiones_por_gclid=conversiones_por_gclid)
-union_final.to_csv('union_final.csv', sep=';')
+union={'Campaña':navegacion_final['Campaña'],'Adgroup':navegacion_final['Adgroup'], 'Advertisement':navegacion_final['Advertisement'],'Site_link': navegacion_final['Site_link'], 'id_user_navegacion': navegacion_final['id_user'], 'gclid_navegacion':navegacion_final['gclid'], 'uuid': navegacion_final['uuid'], 'ts': navegacion_final['ts'], 'id_user_conversiones': conversion_final['id_user'], 'gclid_conversiones': conversion_final['gclid'], 'hour': conversion_final['hour'], 'date': conversion_final['date'], 'id_lead': conversion_final['id_lead'], 'lead_type': conversion_final['lead_type'], 'result': conversion_final['result'] }
+union_final=pd.DataFrame(union)
+csv_union= union_final.assign(conversiones_por_gclid= conversiones_por_gclid, conversiones_por_id=conversiones_por_id)
+csv_union.to_csv('union_final.csv', sep=';')
 
 
 
