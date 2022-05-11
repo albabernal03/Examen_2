@@ -83,7 +83,7 @@ def Separacion_datos_url(URL):
             uuid_1.append(0)
 
 #Con esto vamos a creasr el nuevo csv con los datos separados
-    Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts'], 'url_landing': Dataset_navegacion()['url_landing']} #Se crea un diccionario con los datos de la url
+    Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts']} #Se crea un diccionario con los datos de la url
     navegacion_final=pd.DataFrame(Datos) #Se crea un dataframe con los datos de la url
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
