@@ -89,6 +89,12 @@ def Separacion_datos_url(URL):
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
 
 
+def Eliminacion_datos_repetidos():
+    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
+    navegacion_final.to_csv('navegacion_final.csv', sep=';')
+Eliminacion_datos_repetidos()
+
 
 
 
