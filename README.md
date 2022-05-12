@@ -387,5 +387,6 @@ En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el po
 
 *Gracias a estos diagramas vemos con facilidad la proporción y cual de ellos sobresale; nos ayuda a saber cual es el que se repite con mayor frecuencia.*
 
+**==ANOTACIÓN==** Para los que debia representar porcentaje he visto más apropiado usar diagramas de sectores pues es una forma de visualizar el porcentaje en cuanto el total de cada cosa. En cambio para los que tan solo hay que contar el número de algo (como por ejemplo en este ejercicio que hay que contar el covhe mas visitado) he visto que lo correcto en estos casos es usar un diagrama de barras, pues no buscamos porcentajes sino cantidad y con un diagrama de barras facilmente se pueden comparar los distintos resultados.
 ***
 
