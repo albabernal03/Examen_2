@@ -7,7 +7,7 @@ Este es el link del [repositorio](https://github.com/albabernal03/Examen_2)
 ***
 <h2>¿De qué trata esta tarea?</h2>
 
- En esta tarea se nos pide la limpieza y análisis de Dataframes.
+ En esta tarea se nos pide la limpieza y análisis de Dataframes. Especificamente van sobre coches.
 
 ***
 
@@ -15,6 +15,7 @@ Este es el link del [repositorio](https://github.com/albabernal03/Examen_2)
 
 ```
 import re
+import matplotlib.pyplot as plt
 from numpy.lib.function_base import append #Esta libreria nos permite elementos a un array
 import pandas as pd #Esta libreria nos permite trabajar con dataframes
 #Una vez exportadas las librerias, definimos las funciones para cada dataset
@@ -101,13 +102,13 @@ def Separacion_datos_url(URL):
 #Con esto vamos a creasr el nuevo csv con los datos separados
     Datos= {'Campaña':campaña, 'Adgroup':adgroup, 'Advertisement':advertisement, 'Site_link':site_link, 'id_user':id_user1, 'gclid':gclid_1, 'uuid':uuid_1, 'ts':Dataset_navegacion()['ts'], 'url_landing': Dataset_navegacion()['url_landing']} #Se crea un diccionario con los datos de la url
     navegacion_final=pd.DataFrame(Datos) #Se crea un dataframe con los datos de la url
-    navegacion_final.to_csv('navegacion_final.csv', sep=';')
+    navegacion_final.to_csv('navegacion_con_repeticiones.csv', sep=';')
 Separacion_datos_url(Dataset_navegacion()['url_landing'])
 
 #PASO 3: ELIMINAMOS LOS USUARIOS DONDE SE REPITE LOS DATOS DEL ID_USER, GCLID, UUID
 
 def Eliminacion_datos_repetidos():
-    navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
+    navegacion_final=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
     navegacion_final=navegacion_final.drop_duplicates(subset=['id_user', 'gclid', 'uuid'], keep='first')
     navegacion_final.to_csv('navegacion_final.csv', sep=';')
 Eliminacion_datos_repetidos()
@@ -146,12 +147,12 @@ def Conversiones(data_1, data_2):
 #Aplicamos la funcion a las columnas 'id_user' y 'gclid'
 navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
 conversion_final=pd.read_csv('conversion_final.csv', sep=';')
-conversiones_por_id= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
+conversiones_por_id_user= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
 conversiones_por_gclid=Conversiones(navegacion_final['gclid'], conversion_final['gclid'])
 #creamos un csv con la union de los datos
 union={'Campaña':navegacion_final['Campaña'],'Adgroup':navegacion_final['Adgroup'], 'Advertisement':navegacion_final['Advertisement'],'Site_link': navegacion_final['Site_link'], 'id_user_navegacion': navegacion_final['id_user'], 'gclid_navegacion':navegacion_final['gclid'], 'uuid': navegacion_final['uuid'], 'ts': navegacion_final['ts'], 'id_user_conversiones': conversion_final['id_user'], 'gclid_conversiones': conversion_final['gclid'], 'hour': conversion_final['hour'], 'date': conversion_final['date'], 'id_lead': conversion_final['id_lead'], 'lead_type': conversion_final['lead_type'], 'result': conversion_final['result'] }
 union_final=pd.DataFrame(union)
-csv_union= union_final.assign(conversiones_por_gclid= conversiones_por_gclid, conversiones_por_id=conversiones_por_id)
+csv_union= union_final.assign(conversiones_por_gclid= conversiones_por_gclid, conversiones_por_id_user=conversiones_por_id_user)
 csv_union.to_csv('union_final.csv', sep=';')
 
 
@@ -174,10 +175,10 @@ print(f'El número de formularios que recibe es igual a {call_form()[1]}')
 
 #5.3: Porcentaje de usuarios recurrentes sobre el total de usuarios
 def porcentaje_recurrentes():
-    datos_navegacion=pd.read_csv('navegacion (4) (1).csv', sep=';')
+    datos_navegacion=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
     total=datos_navegacion['id_user'].shape[0]
     recurrentes=datos_navegacion[datos_navegacion['id_user'].duplicated()].shape[0]
-    porcentaje=round(recurrentes/total *100)
+    porcentaje=recurrentes/total *100
     return porcentaje
 print(f'El porcentaje de usuarios recurrentes es igual a {porcentaje_recurrentes()}%')
 
@@ -195,6 +196,31 @@ def coche_mas_visitado():
                 cars[m.groups()[0]] = 1
     return max(cars, key=cars.get)
 print(f'El coche mas visitado es {coche_mas_visitado()}')
+
+
+#Creo una función que nos muestre conversiones_por_id_user y conversiones_por_gclid
+def Conversiones_por_id_user():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_id= 0
+    for i in range(conversiones['conversiones_por_id_user'].shape[0]):
+        if conversiones['conversiones_por_id_user'][i]==1:
+            conversiones_por_id +=1
+    return conversiones_por_id
+print(f'El número de conversiones por id_user es igual a {Conversiones_por_id_user()}')
+
+
+
+
+def Conversiones_por_gclid():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_gclid= 0
+    for i in range(conversiones['conversiones_por_gclid'].shape[0]):
+        if conversiones['conversiones_por_gclid'][i]==1:
+            conversiones_por_gclid +=1
+    return conversiones_por_gclid
+print(f'El número de conversiones por gclid es igual a {Conversiones_por_gclid()}')
+
+
 
 #GRAFICOS
 #5.5: Grafico  sectores de cantidad CALL y FORM
@@ -252,6 +278,43 @@ def grafico_coches_mas_visitados():
     plt.show()
 grafico_coches_mas_visitados()
 
+#hacemos un gráfico de sectores de conversiones_por_id_user y conversiones_por_gclid
+def grafico_conversiones_por_id_user():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_id= 0
+    for i in range(conversiones['conversiones_por_id_user'].shape[0]):
+        if conversiones['conversiones_por_id_user'][i]==1:
+            conversiones_por_id +=1
+    labels = 'Conversiones por id_user', 'No conversiones por id_user'
+    sizes = [conversiones_por_id, conversiones.shape[0]-conversiones_por_id]
+    colors = ['green', 'lightblue']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de conversiones por id_user', color='white')
+    plt.axis('equal')
+    plt.savefig('img/conversiones_por_id_user.png')
+    plt.show()
+grafico_conversiones_por_id_user()
+
+
+def grafico_conversiones_por_gclid():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_gclid= 0
+    for i in range(conversiones['conversiones_por_gclid'].shape[0]):
+        if conversiones['conversiones_por_gclid'][i]==1:
+            conversiones_por_gclid +=1
+    labels = 'Conversiones por gclid', 'No conversiones por gclid'
+    sizes = [conversiones_por_gclid, conversiones.shape[0]-conversiones_por_gclid]
+    colors = ['green', 'purple']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de conversiones por gclid', color='white')
+    plt.axis('equal')
+    plt.savefig('img/conversiones_por_gclid.png')
+    plt.show()
+grafico_conversiones_por_gclid()
 
 ```
 
@@ -281,18 +344,20 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 **5.** Ahora con todos los elementos que se repiten en las columnas seleccionadas, lo que hacemos es ordenarlo por hora de visita; para ello al igual que en el paso anterior utilizaremos otra función de Pandas **.sort_values()**.
 
 **6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparación ponia que si se repetia el id_user en ambos csv creará una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
+**7.** Por último para terminar con el análisis de los Dataframes creo dos funciones que lo que hacen es contar el número de conversiones por id_user y por gclic. Dentro de ambas funciones usamos la funcion **.shape[]**
 
 
 ==**Los pasos anteriores se pueden resumir como la limpieza de los Dataframes; con ellos una vez limpios respondemos a diversas preguntas**==
 
-**7.** En primer lugar creamos una función que nos muestre el número de visitas. Para ello utilizamos la función **.shape()** (que cuenta filas) en la columna de 'id_user_ del Dataset inicial, ya que las un mismo usuario puede proporcionar más de una visita.
+**8.** En primer lugar creamos una función que nos muestre el número de visitas. Para ello utilizamos la función **.shape()** (que cuenta filas) en la columna de 'id_user_ del Dataset inicial, ya que las un mismo usuario puede proporcionar más de una visita.
 
-**8.** A continuación a través de la misma función utilizada en el apartado anterior contamos cuantas llamadas y formularios se recibe.
+**9.** A continuación a través de la misma función utilizada en el apartado anterior contamos cuantas llamadas y formularios se recibe.
 
-**9.** Creamos una funcion que nos muestre el porcentaje de usuarios recurrentes frente a los totales. En este caso utilizamos tanto la función **.shape()** como **.duplicate()** (cuenta repetidos).
+**10.** Creamos una funcion que nos muestre el porcentaje de usuarios recurrentes frente a los totales. En este caso utilizamos tanto la función **.shape()** como **.duplicate()** (cuenta repetidos).
 
-**10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
+**11.** Asimismo creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
 
+**12.** Por ultimo creamos los gráficos que muestren el porcentaje de personas convertidas por id_user y por gclid.
 ***
 
        
@@ -316,8 +381,12 @@ En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el po
 
 <img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
 <img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
+<img width="404" alt="image" src="https://user-images.githubusercontent.com/91721875/168018087-3daa1b7e-fd3e-446c-9085-6a8052ee864e.png">
+<img width="423" alt="image" src="https://user-images.githubusercontent.com/91721875/168018135-5aaf5c5d-9889-4987-a4c0-3e9948a4c47e.png">
+
 
 *Gracias a estos diagramas vemos con facilidad la proporción y cual de ellos sobresale; nos ayuda a saber cual es el que se repite con mayor frecuencia.*
 
+**==ANOTACIÓN==** Para los que debía representar porcentaje he visto más apropiado usar diagramas de sectores pues es una forma de visualizar el porcentaje en cuanto el total de cada cosa. En cambio para los que tan solo hay que contar el número de algo (como por ejemplo en este ejercicio que hay que contar el covhe mas visitado) he visto que lo correcto en estos casos es usar un diagrama de barras, pues no buscamos porcentajes sino cantidad y con un diagrama de barras facilmente se pueden comparar los distintos resultados.
 ***
 
