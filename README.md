@@ -7,7 +7,7 @@ Este es el link del [repositorio](https://github.com/albabernal03/Examen_2)
 ***
 <h2>¿De qué trata esta tarea?</h2>
 
- En esta tarea se mos pide la limpieza y análisis de Dataframes.
+ En esta tarea se nos pide la limpieza y análisis de Dataframes.
 
 ***
 
@@ -196,6 +196,63 @@ def coche_mas_visitado():
     return max(cars, key=cars.get)
 print(f'El coche mas visitado es {coche_mas_visitado()}')
 
+#GRAFICOS
+#5.5: Grafico  sectores de cantidad CALL y FORM
+def grafico_call_form():
+    conversiones=pd.read_csv('conversion_final.csv', sep=';')
+    call=conversiones[conversiones['lead_type']=='CALL'].shape[0]
+    form=conversiones[conversiones['lead_type']=='FORM'].shape[0]
+    labels = 'CALL', 'FORM'
+    sizes = [call, form]
+    colors = ['blue', 'red']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('CALL y FORM', color='white')
+    plt.axis('equal')
+    plt.savefig('img/grafico_call_form.png')
+    plt.show()
+grafico_call_form()
+
+#5.6: Grafico porcentaje de usuarios recurrentes sobre el total de usuarios
+def grafico_recurrentes():
+    datos_navegacion=pd.read_csv('navegacion_con_repeticiones.csv', sep=';')
+    total=datos_navegacion['id_user'].shape[0]
+    recurrentes=datos_navegacion[datos_navegacion['id_user'].duplicated()].shape[0]
+    porcentaje=recurrentes/total *100
+    labels = 'Recurrentes', 'No recurrentes'
+    sizes = [porcentaje, 100-porcentaje]
+    colors = ['green', 'orange']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de usuarios recurrentes vs No recurrentes', color='white')
+    plt.axis('equal')
+    plt.savefig('img/recurrentes.png')
+    plt.show()
+grafico_recurrentes()
+
+#grafico de barras de coches mas visitados
+def grafico_coches_mas_visitados():
+    datos_navegacion=pd.read_csv('navegacion_final.csv', sep=';')
+    cars = {}
+    for i in range(datos_navegacion.shape[0]):
+        m = re.search("http(?:s?):\/(?:\/?)www\.metropolis\.com\/es\/(.+?)\/.*", str(datos_navegacion._get_value(i, "url_landing")))
+        if m != None:
+            if m.groups()[0] in cars:
+                cars[m.groups()[0]] += 1
+            else:
+                cars[m.groups()[0]] = 1
+    labels = list(cars.keys())
+    sizes = list(cars.values())
+    plt.bar(labels, sizes)
+    plt.xticks(rotation=90, fontsize=8)
+    plt.title('Coches mas visitados', color='black')
+    plt.savefig('img/coches_mas_visitados.png')
+    plt.show()
+grafico_coches_mas_visitados()
+
+
 ```
 
 <h2>Explicación paso a paso del código:</h2>
@@ -235,6 +292,31 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 **9.** Creamos una funcion que nos muestre el porcentaje de usuarios recurrentes frente a los totales. En este caso utilizamos tanto la función **.shape()** como **.duplicate()** (cuenta repetidos).
 
 **10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
+
+***
+
+       
+ <h2>Explicación diagramas:</h2>
+
+**====¿Para qué sirve cada diagrama?====**
+
+**Diagrama de barras:**
+
+Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de datos para su mejor entendimiento. Aplicado a este ejercicio observamos claramente que coche ha sido más y menos buscado.
+
+
+
+<img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
+
+<img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
+
+
+
+**Diagrama de sectores:**
+
+En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el número de visitas de los mismos usuarios frente al total de las visitas. 
+
+<img width="306" alt="image" src="https://user-images.githubusercontent.com/91721875/167966232-0e0c6da4-8be7-4951-a73d-3eca7e2ad110.png">
 
 
 ***
