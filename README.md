@@ -7,7 +7,7 @@ Este es el link del [repositorio](https://github.com/albabernal03/Examen_2)
 ***
 <h2>¿De qué trata esta tarea?</h2>
 
- En esta tarea se nos pide la limpieza y análisis de Dataframes.
+ En esta tarea se nos pide la limpieza y análisis de Dataframes. Especificamente van sobre coches.
 
 ***
 
