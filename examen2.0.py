@@ -181,18 +181,29 @@ def coche_mas_visitado():
     return max(cars, key=cars.get)
 print(f'El coche mas visitado es {coche_mas_visitado()}')
 
+
 #Creo una función que nos muestre conversiones_por_id_user y conversiones_por_gclid
 def Conversiones_por_id_user():
     conversiones=pd.read_csv('union_final.csv', sep=';')
-    conversiones_por_id_user=conversiones['conversiones_por_id_user']
-    return conversiones_por_id_user
-Conversiones_por_id_user()
+    conversiones_por_id= 0
+    for i in range(conversiones['conversiones_por_id_user'].shape[0]):
+        if conversiones['conversiones_por_id_user'][i]==1:
+            conversiones_por_id +=1
+    return conversiones_por_id
+print(f'El número de conversiones por id_user es igual a {Conversiones_por_id_user()}')
+
+
+
 
 def Conversiones_por_gclid():
     conversiones=pd.read_csv('union_final.csv', sep=';')
-    conversiones_por_gclid=conversiones['conversiones_por_gclid']
+    conversiones_por_gclid= 0
+    for i in range(conversiones['conversiones_por_gclid'].shape[0]):
+        if conversiones['conversiones_por_gclid'][i]==1:
+            conversiones_por_gclid +=1
     return conversiones_por_gclid
-Conversiones_por_gclid()
+print(f'El número de conversiones por gclid es igual a {Conversiones_por_gclid()}')
+
 
 
 #GRAFICOS
@@ -250,6 +261,49 @@ def grafico_coches_mas_visitados():
     plt.savefig('img/coches_mas_visitados.png')
     plt.show()
 grafico_coches_mas_visitados()
+
+#hacemos un gráfico de sectores de conversiones_por_id_user y conversiones_por_gclid
+def grafico_conversiones_por_id_user():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_id= 0
+    for i in range(conversiones['conversiones_por_id_user'].shape[0]):
+        if conversiones['conversiones_por_id_user'][i]==1:
+            conversiones_por_id +=1
+    labels = 'Conversiones por id_user', 'No conversiones por id_user'
+    sizes = [conversiones_por_id, conversiones.shape[0]-conversiones_por_id]
+    colors = ['green', 'lightblue']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de conversiones por id_user', color='white')
+    plt.axis('equal')
+    plt.savefig('img/conversiones_por_id_user.png')
+    plt.show()
+grafico_conversiones_por_id_user()
+
+
+def grafico_conversiones_por_gclid():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_gclid= 0
+    for i in range(conversiones['conversiones_por_gclid'].shape[0]):
+        if conversiones['conversiones_por_gclid'][i]==1:
+            conversiones_por_gclid +=1
+    labels = 'Conversiones por gclid', 'No conversiones por gclid'
+    sizes = [conversiones_por_gclid, conversiones.shape[0]-conversiones_por_gclid]
+    colors = ['green', 'purple']
+    explode = (0.1, 0.1)
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.title('Porcentaje de conversiones por gclid', color='white')
+    plt.axis('equal')
+    plt.savefig('img/conversiones_por_gclid.png')
+    plt.show()
+grafico_conversiones_por_gclid()
+
+
+
+
+
 
 
  
