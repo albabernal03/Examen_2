@@ -131,12 +131,12 @@ def Conversiones(data_1, data_2):
 #Aplicamos la funcion a las columnas 'id_user' y 'gclid'
 navegacion_final=pd.read_csv('navegacion_final.csv', sep=';')
 conversion_final=pd.read_csv('conversion_final.csv', sep=';')
-conversiones_por_id= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
+conversiones_por_id_user= Conversiones(navegacion_final['id_user'], conversion_final['id_user'])
 conversiones_por_gclid=Conversiones(navegacion_final['gclid'], conversion_final['gclid'])
 #creamos un csv con la union de los datos
 union={'Campaña':navegacion_final['Campaña'],'Adgroup':navegacion_final['Adgroup'], 'Advertisement':navegacion_final['Advertisement'],'Site_link': navegacion_final['Site_link'], 'id_user_navegacion': navegacion_final['id_user'], 'gclid_navegacion':navegacion_final['gclid'], 'uuid': navegacion_final['uuid'], 'ts': navegacion_final['ts'], 'id_user_conversiones': conversion_final['id_user'], 'gclid_conversiones': conversion_final['gclid'], 'hour': conversion_final['hour'], 'date': conversion_final['date'], 'id_lead': conversion_final['id_lead'], 'lead_type': conversion_final['lead_type'], 'result': conversion_final['result'] }
 union_final=pd.DataFrame(union)
-csv_union= union_final.assign(conversiones_por_gclid= conversiones_por_gclid, conversiones_por_id=conversiones_por_id)
+csv_union= union_final.assign(conversiones_por_gclid= conversiones_por_gclid, conversiones_por_id_user=conversiones_por_id_user)
 csv_union.to_csv('union_final.csv', sep=';')
 
 
@@ -180,6 +180,20 @@ def coche_mas_visitado():
                 cars[m.groups()[0]] = 1
     return max(cars, key=cars.get)
 print(f'El coche mas visitado es {coche_mas_visitado()}')
+
+#Creo una función que nos muestre conversiones_por_id_user y conversiones_por_gclid
+def Conversiones_por_id_user():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_id_user=conversiones['conversiones_por_id_user']
+    return conversiones_por_id_user
+Conversiones_por_id_user()
+
+def Conversiones_por_gclid():
+    conversiones=pd.read_csv('union_final.csv', sep=';')
+    conversiones_por_gclid=conversiones['conversiones_por_gclid']
+    return conversiones_por_gclid
+Conversiones_por_gclid()
+
 
 #GRAFICOS
 #5.5: Grafico  sectores de cantidad CALL y FORM
@@ -238,6 +252,7 @@ def grafico_coches_mas_visitados():
 grafico_coches_mas_visitados()
 
 
+ 
 
 
 
