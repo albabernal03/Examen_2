@@ -344,18 +344,20 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 **5.** Ahora con todos los elementos que se repiten en las columnas seleccionadas, lo que hacemos es ordenarlo por hora de visita; para ello al igual que en el paso anterior utilizaremos otra función de Pandas **.sort_values()**.
 
 **6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparación ponia que si se repetia el id_user en ambos csv creará una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
+**7.** Por último para terminar con el análisis de los Dataframes creo dos funciones que lo que hacen es contar el número de conversiones por id_user y por gclic. Dentro de ambas funciones usamos la funcion **.shape[]**
 
 
 ==**Los pasos anteriores se pueden resumir como la limpieza de los Dataframes; con ellos una vez limpios respondemos a diversas preguntas**==
 
-**7.** En primer lugar creamos una función que nos muestre el número de visitas. Para ello utilizamos la función **.shape()** (que cuenta filas) en la columna de 'id_user_ del Dataset inicial, ya que las un mismo usuario puede proporcionar más de una visita.
+**8.** En primer lugar creamos una función que nos muestre el número de visitas. Para ello utilizamos la función **.shape()** (que cuenta filas) en la columna de 'id_user_ del Dataset inicial, ya que las un mismo usuario puede proporcionar más de una visita.
 
-**8.** A continuación a través de la misma función utilizada en el apartado anterior contamos cuantas llamadas y formularios se recibe.
+**9.** A continuación a través de la misma función utilizada en el apartado anterior contamos cuantas llamadas y formularios se recibe.
 
-**9.** Creamos una funcion que nos muestre el porcentaje de usuarios recurrentes frente a los totales. En este caso utilizamos tanto la función **.shape()** como **.duplicate()** (cuenta repetidos).
+**10.** Creamos una funcion que nos muestre el porcentaje de usuarios recurrentes frente a los totales. En este caso utilizamos tanto la función **.shape()** como **.duplicate()** (cuenta repetidos).
 
-**10.** Por último creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
+**11.** Asimismo creamos una función que nos indica cual es el coche más visitado. Pra ello usamos funciones como **.shape(), re.search(), .group() y .get**
 
+**12.** Por ultimo creamos los gráficos que muestren el porcentaje de personas convertidas por id_user y por gclid.
 ***
 
        
