@@ -276,11 +276,11 @@ Para ello en primer lugar creamos lista vacías con los datos que queremos compl
 
 Después de esto creamos un nuevo csv donde añadimos columnas con la nueva información.
 
-**4.** Una vez tenemos nuestro dataset con las nuevas columnas, lo que hacemos es eliminar los datos repetidos, para ello utilizaremos la funciom de Pandas **drop.duplicate()**.
+**4.** Una vez tenemos nuestro dataset con las nuevas columnas, lo que hacemos es eliminar los datos repetidos, para ello utilizaremos la función de Pandas **drop.duplicate()**.
 
 **5.** Ahora con todos los elementos que se repiten en las columnas seleccionadas, lo que hacemos es ordenarlo por hora de visita; para ello al igual que en el paso anterior utilizaremos otra función de Pandas **.sort_values()**.
 
-**6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparacion ponia que si se repetia el id_user en ambos csv creara una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
+**6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparación ponia que si se repetia el id_user en ambos csv creará una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
 
 
 ==**Los pasos anteriores se pueden resumir como la limpieza de los Dataframes; con ellos una vez limpios respondemos a diversas preguntas**==
