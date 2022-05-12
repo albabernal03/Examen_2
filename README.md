@@ -379,6 +379,9 @@ En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el po
 
 <img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
 <img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
+<img width="404" alt="image" src="https://user-images.githubusercontent.com/91721875/168018087-3daa1b7e-fd3e-446c-9085-6a8052ee864e.png">
+<img width="423" alt="image" src="https://user-images.githubusercontent.com/91721875/168018135-5aaf5c5d-9889-4987-a4c0-3e9948a4c47e.png">
+
 
 *Gracias a estos diagramas vemos con facilidad la proporción y cual de ellos sobresale; nos ayuda a saber cual es el que se repite con mayor frecuencia.*
 
