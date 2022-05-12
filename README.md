@@ -305,19 +305,17 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de datos para su mejor entendimiento. Aplicado a este ejercicio observamos claramente que coche ha sido más y menos buscado.
 
 
+<img width="306" alt="image" src="https://user-images.githubusercontent.com/91721875/167966232-0e0c6da4-8be7-4951-a73d-3eca7e2ad110.png">
 
-<img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
-
-<img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
-
-*En el **primer diagrama** podemos observar 
 
 
 **Diagrama de sectores:**
 
 En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el número de visitas de los mismos usuarios frente al total de las visitas. 
 
-<img width="306" alt="image" src="https://user-images.githubusercontent.com/91721875/167966232-0e0c6da4-8be7-4951-a73d-3eca7e2ad110.png">
+
+<img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
+<img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
 
 
 ***
