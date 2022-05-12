@@ -189,7 +189,7 @@ def grafico_call_form():
     form=conversiones[conversiones['lead_type']=='FORM'].shape[0]
     labels = 'CALL', 'FORM'
     sizes = [call, form]
-    colors = ['pink', 'lightblue']
+    colors = ['blue', 'red']
     explode = (0.1, 0.1)
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,
             autopct='%1.1f%%', shadow=True, startangle=140)
@@ -207,7 +207,7 @@ def grafico_recurrentes():
     porcentaje=recurrentes/total *100
     labels = 'Recurrentes', 'No recurrentes'
     sizes = [porcentaje, 100-porcentaje]
-    colors = ['lightyellow', 'lightgreen']
+    colors = ['green', 'orange']
     explode = (0.1, 0.1)
     plt.pie(sizes, explode=explode, labels=labels, colors=colors,
             autopct='%1.1f%%', shadow=True, startangle=140)
