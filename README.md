@@ -262,7 +262,7 @@ grafico_coches_mas_visitados()
 **1.** En primer lugar importamos las librerías que necesitamos para desarrollar el programa, en esta ocasión hemos importado las siguientes librerias:
 
        -Pandas: esta libreria la utilizamos para leer y crear csvs
-       -Numpy:esta libreria la utilizamos para modificar pues arrays puesto que usamos la funcion append
+       -Numpy:esta libreria la utilizamos para modificar los arrays puesto que usamos la funcion append
        
 Asimismo, también importamos funciones como:
          
@@ -276,11 +276,11 @@ Para ello en primer lugar creamos lista vacías con los datos que queremos compl
 
 Después de esto creamos un nuevo csv donde añadimos columnas con la nueva información.
 
-**4.** Una vez tenemos nuestro dataset con las nuevas columnas, lo que hacemos es eliminar los datos repetidos, para ello utilizaremos la funciom de Pandas **drop.duplicate()**.
+**4.** Una vez tenemos nuestro dataset con las nuevas columnas, lo que hacemos es eliminar los datos repetidos, para ello utilizaremos la función de Pandas **drop.duplicate()**.
 
 **5.** Ahora con todos los elementos que se repiten en las columnas seleccionadas, lo que hacemos es ordenarlo por hora de visita; para ello al igual que en el paso anterior utilizaremos otra función de Pandas **.sort_values()**.
 
-**6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparacion ponia que si se repetia el id_user en ambos csv creara una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
+**6.** A continuación se nos pide que unamos ambos csv. Para ello lo primero que hice fue limpiar el Dataframe de conversiones, y donde había None los remplace por blanco. Una vez llevado a cabo la función de limpieza me puse a comparar ambos datasets por la columna id_user y gclid. En la comparación ponia que si se repetia el id_user en ambos csv creará una columna añadiendo 1 en caso contrario se rellenará con un 0. Lo mismo hice con la columna gclid.
 
 
 ==**Los pasos anteriores se pueden resumir como la limpieza de los Dataframes; con ellos una vez limpios respondemos a diversas preguntas**==
@@ -305,10 +305,7 @@ Después de esto creamos un nuevo csv donde añadimos columnas con la nueva info
 Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de datos para su mejor entendimiento. Aplicado a este ejercicio observamos claramente que coche ha sido más y menos buscado.
 
 
-
-<img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
-
-<img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
+<img width="306" alt="image" src="https://user-images.githubusercontent.com/91721875/167966232-0e0c6da4-8be7-4951-a73d-3eca7e2ad110.png">
 
 
 
@@ -316,8 +313,11 @@ Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de
 
 En nuestro diagrama de sectores, vemos que el primero de ellos nos muestra el porcentaje de llamadas y formularios recibidos y en el segundo el número de visitas de los mismos usuarios frente al total de las visitas. 
 
-<img width="306" alt="image" src="https://user-images.githubusercontent.com/91721875/167966232-0e0c6da4-8be7-4951-a73d-3eca7e2ad110.png">
 
+<img width="241" alt="image" src="https://user-images.githubusercontent.com/91721875/167966138-11e5dd90-7f0c-4166-8ec1-3727d079e610.png">
+<img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
+
+*Gracias a estos diagramas vemos con facilidad la proporción y cual de ellos sobresale; nos ayuda a saber cual es el que se repite con mayor frecuencia.*
 
 ***
 
