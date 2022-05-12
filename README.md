@@ -310,6 +310,7 @@ Cómo todos los diagramas, el diagram de barras sirve para ilustrar una serie de
 
 <img width="331" alt="image" src="https://user-images.githubusercontent.com/91721875/167966156-258d19a0-3c07-4051-8101-0fe587c3ad54.png">
 
+*En el **primer diagrama** podemos observar 
 
 
 **Diagrama de sectores:**
