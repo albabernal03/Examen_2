@@ -262,7 +262,7 @@ grafico_coches_mas_visitados()
 **1.** En primer lugar importamos las librerías que necesitamos para desarrollar el programa, en esta ocasión hemos importado las siguientes librerias:
 
        -Pandas: esta libreria la utilizamos para leer y crear csvs
-       -Numpy:esta libreria la utilizamos para modificar pues arrays puesto que usamos la funcion append
+       -Numpy:esta libreria la utilizamos para modificar los arrays puesto que usamos la funcion append
        
 Asimismo, también importamos funciones como:
          
